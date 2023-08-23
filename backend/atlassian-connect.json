@@ -1,0 +1,21 @@
+{
+    "modules": {},
+    "key": "connect-app-from-scratch",
+    "name": "My Connect App",
+    "description": "A connect app that does something",
+    "vendor": {
+        "name": "My Company",
+        "url": "https://www.example.com"
+    },
+    "lifecycle": {
+        "installed": "/installed",
+        "uninstalled": "/uninstalled",
+        "enabled": "/enabled"
+    },
+    "baseUrl": "this value is changed according to env variables",
+    "authentication": {
+        "type": "jwt"
+    },
+    "enableLicensing": true,
+    "scopes": ["read", "write"]
+}
