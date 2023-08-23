@@ -11,11 +11,11 @@ export default async function authorizeLifecycle(authorization: string): Promise
     const kid = decoded.header.kid;
     if (!kid) return false;
 
-    const { data: publicKey } = await axios.get<string>(
-        `https://connect-install-keys.atlassian.com/${kid}`
-    );
-
     try {
+        const { data: publicKey } = await axios.get<string>(
+            `https://connect-install-keys.atlassian.com/${kid}`
+        );
+
         jwt.verify(dangerousJwt, Buffer.from(publicKey, "utf-8"));
         return true;
     } catch {

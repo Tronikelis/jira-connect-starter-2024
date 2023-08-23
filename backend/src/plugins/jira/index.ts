@@ -6,6 +6,8 @@ import fp from "fastify-plugin";
 
 import __dirname from "~/utils/__dirname.js";
 
+import authorizeLifecycle from "./utils/authorizeLifecycle.js";
+
 const plugin: FastifyPluginCallback = (fastify, _, done) => {
     /**
      * IMPORTANT !!!
@@ -13,14 +15,26 @@ const plugin: FastifyPluginCallback = (fastify, _, done) => {
      */
 
     fastify.post("/installed", async (req, reply) => {
+        if (!(await authorizeLifecycle(req.headers.authorization || ""))) {
+            throw new Error("request not coming from atlassian");
+        }
+
         // todo
     });
 
     fastify.post("/uninstalled", async (req, reply) => {
+        if (!(await authorizeLifecycle(req.headers.authorization || ""))) {
+            throw new Error("request not coming from atlassian");
+        }
+
         // todo
     });
 
     fastify.post("/enabled", async (req, reply) => {
+        if (!(await authorizeLifecycle(req.headers.authorization || ""))) {
+            throw new Error("request not coming from atlassian");
+        }
+
         // todo
     });
 
