@@ -1,10 +1,11 @@
-import path from "node:path";
-
 import dotenv from "dotenv";
-import Fastify from "fastify";
-
 dotenv.config({ path: path.join(__dirname(import.meta.url), "../.env") });
 
+import path from "node:path";
+
+import Fastify from "fastify";
+
+import frontendPlugin from "./plugins/frontend/index.js";
 import jiraPlugin from "./plugins/jira/index.js";
 import __dirname from "./utils/__dirname.js";
 
@@ -14,6 +15,7 @@ async function main() {
     const fastify = Fastify({ logger: true });
 
     await fastify.register(jiraPlugin);
+    await fastify.register(frontendPlugin);
 
     fastify.listen({ host: "0.0.0.0", port }, err => {
         if (err) {

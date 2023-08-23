@@ -3,7 +3,8 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite build --watch"
+        "dev": "vite build --watch",
+        "build": "vite build"
     },
     "dependencies": {
         "react": "18.2.0",
